@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpeedForce | Potencia Negro + Rojo</title>
+  <style>
+    /* ========== CONFIGURACIÓN GENERAL ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth; /* Scroll suave al hacer click en el menú */
+    }
+
+    body {
+      font-family: 'Helvetica', Arial, sans-serif;
+      background-color: #0D0D0D;
+      color: #FFFFFF;
+      line-height: 1.7;
+    }
+
+    /* ========== MENÚ DE NAVEGACIÓN FIJO ========== */
+    header {
+      background: #000000;
+      padding: 20px 8%;
+      border-bottom: 4px solid #E10600;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .logo {
+      color: #E10600;
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    header nav a {
+      color: #FFFFFF;
+      text-decoration: none;
+      margin-left: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    header nav a:hover {
+      color: #E10600;
+    }
+
+    /* ========== SECCIÓN 1: PORTADA PRINCIPAL ========== */
+    .portada {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), 
+                  url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* Efecto parallax */
+      display: flex;
+      align-items: center;
+      padding: 0 8%;
+      margin-top: 80px; /* Para que no lo tape el menú */
+    }
+
+    .portada-contenido {
+      max-width: 700px;
+    }
+
+    .portada h1 {
+      font-size: 65px;
+      line-height: 1.1;
+      margin-bottom: 25px;
+    }
+
+    .portada h1 span {
+      color: #E10600;
+      display: block;
+    }
+
+    .portada p {
+      font-size: 20px;
+      color: #CCCCCC;
+      margin-bottom: 40px;
+    }
+
+    .boton-rojo {
+      background: #E10600;
+      color: #FFFFFF;
+      padding: 18px 45px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 5px;
+      border: 2px solid #E10600;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .boton-rojo:hover {
+      background: transparent;
+      color: #E10600;
+    }
+
+    /* ========== SECCIÓN 2: CARACTERÍSTICAS ========== */
+    .caracteristicas {
+      padding: 100px 8%;
+      background: #111111;
+    }
+
+    .titulo-seccion {
+      text-align: center;
+      font-size: 45px;
+      margin-bottom: 20px;
+    }
+
+    .titulo-seccion span {
+      color: #E10600;
+    }
+
+    .subtitulo {
+      text-align: center;
+      color: #999999;
+      max-width: 600px;
+      margin: 0 auto 60px auto;
+      font-size: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .caja-feature {
+      background: #000000;
+      padding: 40px 30px;
+      border-left: 5px solid #E10600;
+      border-radius: 8px;
+    }
+
+    .caja-feature h3 {
+      color: #E10600;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .caja-feature p {
+      color: #BBBBBB;
+    }
+
+    /* ========== SECCIÓN 3: GALERÍA DE MODELOS ========== */
+    .galeria {
+      padding: 100px 8%;
+      background: #0D0D0D;
+    }
+
+    .grid-galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .modelo {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      height: 400px;
+    }
+
+    .modelo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+
+    .modelo:hover img {
+      transform: scale(1.1);
+    }
+
+    .info-modelo {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.95));
+      padding: 30px;
+    }
+
+    .info-modelo h3 {
+      color: #E10600;
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
+
+    .info-modelo p {
+      color: #DDDDDD;
+    }
+
+    /* ========== SECCIÓN 4: ESPECIFICACIONES ========== */
+    .especificaciones {
+      padding: 100px 8%;
+      background: #111111;
+    }
+
+    .tabla-spec {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background: #000000;
+    }
+
+    .tabla-spec tr {
+      border-bottom: 1px solid #333333;
+    }
+
+    .tabla-spec td {
+      padding: 20px;
+      font-size: 18px;
+    }
+
+    .tabla-spec td:first-child {
+      color: #E10600;
+      font-weight: bold;
+      width: 40%;
+    }
+
+    /* ========== SECCIÓN 5: CONTACTO ========== */
+    .contacto {
+      padding: 100px 8%;
+      background: #000000;
+      text-align: center;
+    }
+
+    .contacto form {
+      max-width: 600px;
+      margin: 40px auto 0 auto;
+      text-align: left;
+    }
+
+    .contacto input, .contacto textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      background: #1A1A1A;
+      border: 1px solid #333333;
+      color: #FFFFFF;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .contacto input:focus, .contacto textarea:focus {
+      outline: none;
+      border: 1px solid #E10600;
+    }
+
+    .contacto textarea {
+      height: 150px;
+      resize: none;
+    }
+
+    /* ========== PIE DE PÁGINA ========== */
+    footer {
+      background: #000000;
+      text-align: center;
+      padding: 40px 8%;
+      border-top: 4px solid #E10600;
+      color: #666666;
+    }
+
+    footer p span {
+      color: #E10600;
+      font-weight: bold;
+    }
+
+    /* ========== RESPONSIVE PARA CELULAR ========== */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 15px 5%;
+      }
+      
+      header nav {
+        margin-top: 15px;
+      }
+      
+      header nav a {
+        margin: 0 10px;
+        font-size: 14px;
+      }
+      
+      .portada h1 {
+        font-size: 40px;
+      }
+      
+      .portada {
+        margin-top: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MENÚ -->
+  <header>
+    <div class="logo">SPEEDFORCE</div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#features">Potencia</a>
+      <a href="#modelos">Modelos</a>
+      <a href="#specs">Specs</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- SECCIÓN 1: PORTADA -->
+  <section class="portada" id="inicio">
+    <div class="portada-contenido">
+      <h1>Diseño <span>Agresivo</span> Rendimiento <span>Extremo</span></h1>
+      <p>La combinación perfecta entre elegancia negro mate y la pasión del rojo. Creado para dominar el asfalto.</p>
+      <a href="#modelos" class="boton-rojo">Explorar Modelos</a>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: CARACTERÍSTICAS -->
+  <section class="caracteristicas" id="features">
+    <h2 class="titulo-seccion">¿Por Qué <span>SpeedForce</span>?</h2>
+    <p class="subtitulo">Ingeniería de precisión con un diseño que impone respeto en cada curva</p>
+    
+    <div class="grid-3">
+      <div class="caja-feature">
+        <h3>Motor V8 Twin-Turbo</h3>
+        <p>620 caballos de fuerza. De 0 a 100 km/h en 3.2 segundos. Pura adrenalina.</p>
+      </div>
+      <div class="caja-feature">
+        <h3>Diseño Aerodinámico</h3>
+        <p>Cada línea está calculada. El aire es tu aliado, no tu resistencia. Fibra de carbono real.</p>
+      </div>
+      <div class="caja-feature">
+        <h3>Interior de Lujo</h3>
+        <p>Asientos deportivos en cuero rojo, tablero digital y detalles en negro piano.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: GALERÍA -->
+  <section class="galeria" id="modelos">
+    <h2 class="titulo-seccion">Nuestra <span>Colección</span></h2>
+    <p class="subtitulo">Tres bestias diferentes. Una misma esencia: poder</p>
+    
+    <div class="grid-galeria">
+      <div class="modelo">
+        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070" alt="Modelo Fuego">
+        <div class="info-modelo">
+          <h3>SF-Fuego</h3>
+          <p>Rojo infierno. El más agresivo de la familia.</p>
+        </div>
+      </div>
+      
+      <div class="modelo">
+        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070" alt="Modelo Sombra">
+        <div class="info-modelo">
+          <h3>SF-Sombra</h3>
+          <p>Negro mate sigiloso. Elegancia que intimida.</p>
+        </div>
+      </div>
+      
+      <div class="modelo">
+        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=2070" alt="Modelo Élite">
+        <div class="info-modelo">
+          <h3>SF-Élite</h3>
+          <p>Edición limitada. Lujo y potencia sin compromisos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: ESPECIFICACIONES -->
+  <section class="especificaciones" id="specs">
+    <h2 class="titulo-seccion">Especificaciones <span>Técnicas</span></h2>
+    <p class="subtitulo">Números que hablan por sí solos</p>
+    
+    <table class="tabla-spec">
+      <tr>
+        <td>Motor</td>
+        <td>V8 4.0L Twin-Turbo</td>
+      </tr>
+      <tr>
+        <td>Potencia</td>
+        <td>620 HP @ 6500 RPM</td>
+      </tr>
+      <tr>
+        <td>Torque</td>
+        <td>800 Nm @ 2000 RPM</td>
+      </tr>
+      <tr>
+        <td>0-100 km/h</td>
+        <td>3.2 segundos</td>
+      </tr>
+      <tr>
+        <td>Velocidad Máxima</td>
+        <td>330 km/h</td>
+      </tr>
+      <tr>
+        <td>Transmisión</td>
+        <td>Automática 8 velocidades</td>
+      </tr>
+      <tr>
+        <td>Tracción</td>
+        <td>Trasera con diferencial activo</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- SECCIÓN 5: CONTACTO -->
+  <section class="contacto" id="contacto">
+    <h2 class="titulo-seccion">¿Listo para la <span>Velocidad</span>?</h2>
+    <p class="subtitulo">Déjanos tus datos y agenda una prueba de manejo</p>
+    
+    <form>
+      <input type="text" placeholder="Tu Nombre Completo" required>
+      <input type="email" placeholder="Tu Correo Electrónico" required>
+      <input type="tel" placeholder="Tu Teléfono">
+      <textarea placeholder="¿Qué modelo te interesa? Cuéntanos..."></textarea>
+      <button type="submit" class="boton-rojo">Enviar Solicitud</button>
+    </form>
+  </section>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <p>© 2026 <span>SpeedForce</span> | Diseño Negro + Rojo = Poder Absoluto</p>
+    <p>Todos los derechos reservados</p>
+  </footer>
+
+</body>
+</html>
